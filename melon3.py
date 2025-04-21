@@ -50,4 +50,26 @@ elif n == "3":
     for i in range(10):
         print(f"{songs[i][0]}. {songs[i][1]} - {songs[i][2]}")
 
-elif n == "
+elif n == "4":
+    print("[노래 추천 기능]")
+    song = random.choice(songs)
+    print(f"오늘의 추천곡: {song[1]} - {song[2]}")
+
+elif n == "5":
+    artist_name = input("검색할 가수 이름을 입력하세요: ")
+    found = False
+    for song in songs:
+        if artist_name.lower() in song[2].lower():
+            print(f"{song[0]}. {song[1]} - {song[2]}")
+            found = True
+    if not found:
+        print("해당 가수가 TOP100에 없습니다.")
+
+elif n == "6":
+    filename = 'melon_top100.csv'
+    with open(filename, 'w', newline='', encoding='utf-8-sig') as f:
+        writer = csv.writer(f)
+        writer.writerow(['순위', '곡명', '아티스트'])
+        for song in songs:
+            writer.writerow(song)
+    print(f"{filename} 파일에 저장되었습니다.")
